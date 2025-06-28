@@ -88,6 +88,10 @@ class ProfileResponse(BaseModel):
 def root():
     return RedirectResponse(url="/docs")
 
+@app.get("/api", include_in_schema=False)
+def root():
+    return RedirectResponse(url="/docs")
+
 @app.get("/swagger-ui", include_in_schema=False)
 def swagger_ui():
     return RedirectResponse(url="/docs")
