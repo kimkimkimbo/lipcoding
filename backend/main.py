@@ -8,6 +8,10 @@ from sqlalchemy.orm import sessionmaker, declarative_base, Session
 from passlib.hash import bcrypt
 import jwt, datetime, os, io
 from typing import List, Optional
+from fastapi.responses import RedirectResponse
+
+
+
 
 DATABASE_URL = "sqlite:///./mentor_mentee.db"
 engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
@@ -78,6 +82,15 @@ class ProfileResponse(BaseModel):
     bio: str
     skills: Optional[List[str]] = []
     imageUrl: str
+    
+
+@app.get("/", include_in_schema=False)
+def root():
+    return RedirectResponse(url="/docs")
+
+@app.get("/swagger-ui", include_in_schema=False)
+def swagger_ui():
+    return RedirectResponse(url="/docs")
 
 @app.post("/routes/api/signup")
 def signup(req: SignupRequest, db: Session = Depends(get_db)):
