@@ -6,6 +6,21 @@
 # dotenv files
 .env
 
+# 추가: 배포/제출 시 포함되면 안 되는 파일/폴더
+*.db
+*.sqlite
+*.sqlite3
+backend/.env
+frontend/.env
+.venv/
+venv/
+*.log
+.ipynb_checkpoints/
+secrets.*
+*.pem
+*.key
+*.crt
+
 # User-specific files
 *.rsuser
 *.suo
